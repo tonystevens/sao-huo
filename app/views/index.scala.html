@@ -1,4 +1,4 @@
-@(content: Html)
+@(message: String)
 
 <!DOCTYPE html>
 <html>
@@ -11,15 +11,15 @@
         
         <header class="topbar">
             <h1 class="fill">
+                @message
                 <a href="@routes.Application.main()">
-                    Inventory
+                    Click to check inventory
+                </a>
+                <a href="@routes.UserManager.blank()">
+                    Sign In
                 </a>
             </h1>
         </header>
-
-        <section id="main">
-            @content
-        </section>
         
     </body>
 </html>

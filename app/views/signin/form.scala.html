@@ -1,0 +1,37 @@
+@(signinForm: Form[Users])
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@title = {
+    Sign In
+}
+
+@main {
+    
+    @helper.form(action = routes.UserManager.submit) {
+        
+        <fieldset>
+            <legend>Account information</legend>
+            
+            @inputText(
+                signinForm("email"), '_label -> "Email",
+                '_help -> "Enter a valid email address."
+            )
+            
+            @inputPassword(
+                signinForm("password"),
+                '_label -> "Password",
+                '_help -> "Enter a password"
+            )
+            
+        </fieldset>
+        
+        <div class="actions">
+            <input type="submit" class="btn primary" value="Sign In">
+            <a href="@routes.Application.index()" class="btn">Cancel</a>
+        </div>
+        
+    }
+    
+}

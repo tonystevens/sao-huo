@@ -24,6 +24,10 @@ public class Application extends Controller {
      * Handle default path requests, redirect to computers list
      */
     public static Result index() {
+        return ok(views.html.index.render("Welcome to Sao Huo Program! "));
+    }
+
+    public static Result main(){
         return GO_HOME;
     }
 

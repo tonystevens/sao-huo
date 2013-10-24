@@ -39,12 +39,12 @@ Seq[Any](format.raw/*1.17*/("""
         
         <header class="topbar">
             <h1 class="fill">
-                <a href=""""),_display_(Seq[Any](/*14.27*/routes/*14.33*/.Application.index())),format.raw/*14.53*/("""">
-                    Play sample application &mdash; Computer database
+                <a href=""""),_display_(Seq[Any](/*14.27*/routes/*14.33*/.Application.main())),format.raw/*14.52*/("""">
+                    Inventory
                 </a>
             </h1>
         </header>
-        
+
         <section id="main">
             """),_display_(Seq[Any](/*21.14*/content)),format.raw/*21.21*/("""
         </section>
@@ -63,10 +63,10 @@ Seq[Any](format.raw/*1.17*/("""
 }
                 /*
                     -- GENERATED --
-                    DATE: Wed Oct 23 14:50:28 CDT 2013
+                    DATE: Wed Oct 23 15:39:00 CDT 2013
                     SOURCE: /Users/TZ029887/Documents/computer-database/app/views/main.scala.html
-                    HASH: 0711b835c70ca9e75b28fd3f10a1ef64dd21bb4d
-                    MATRIX: 771->1|880->16|1062->163|1076->169|1141->212|1249->285|1263->291|1319->325|1479->449|1494->455|1536->475|1752->655|1781->662
+                    HASH: a668e91f41ba7a9d6bf0fca72447fa1e0c8cf4c9
+                    MATRIX: 771->1|880->16|1062->163|1076->169|1141->212|1249->285|1263->291|1319->325|1479->449|1494->455|1535->474|1703->606|1732->613
                     LINES: 26->1|29->1|35->7|35->7|35->7|36->8|36->8|36->8|42->14|42->14|42->14|49->21|49->21
                     -- GENERATED --
                 */

@@ -5,6 +5,8 @@
 # Default path will just redirect to the computer list
 GET     /                           controllers.Application.index()
 
+GET     /main                       controllers.Application.main()
+
 # Computers list (look at the default values for pagination parameters)
 GET     /computers                  controllers.Application.list(p:Int ?= 0, s ?= "name", o ?= "asc", f ?= "")
 
@@ -21,4 +23,8 @@ POST    /computers/:id/delete       controllers.Application.delete(id:Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
+#User
+GET     /signin                     controllers.UserManager.blank()
+POST    /signin                     controllers.UserManager.submit()
 

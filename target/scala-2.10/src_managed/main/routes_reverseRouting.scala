@@ -1,6 +1,6 @@
 // @SOURCE:/Users/TZ029887/Documents/computer-database/conf/routes
-// @HASH:cb30ab11788db22ca8a8dece514634270a4cbce7
-// @DATE:Wed Oct 23 14:50:27 CDT 2013
+// @HASH:bb710b83799157d94032f87abf275e86c1eb23f7
+// @DATE:Thu Oct 24 13:41:46 CDT 2013
 
 import Routes.{prefix => _prefix, defaultPrefix => _defaultPrefix}
 import play.core._
@@ -13,21 +13,24 @@ import play.libs.F
 import Router.queryString
 
 
-// @LINE:23
-// @LINE:20
-// @LINE:17
-// @LINE:16
-// @LINE:13
-// @LINE:12
-// @LINE:9
+// @LINE:29
+// @LINE:28
+// @LINE:25
+// @LINE:22
+// @LINE:19
+// @LINE:18
+// @LINE:15
+// @LINE:14
+// @LINE:11
+// @LINE:8
 // @LINE:6
 package controllers {
 
-// @LINE:23
+// @LINE:25
 class ReverseAssets {
     
 
-// @LINE:23
+// @LINE:25
 def at(file:String): Call = {
    Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[PathBindable[String]].unbind("file", file))
 }
@@ -36,47 +39,74 @@ def at(file:String): Call = {
 }
                           
 
-// @LINE:20
-// @LINE:17
-// @LINE:16
-// @LINE:13
-// @LINE:12
-// @LINE:9
+// @LINE:29
+// @LINE:28
+class ReverseUserManager {
+    
+
+// @LINE:28
+def blank(): Call = {
+   Call("GET", _prefix + { _defaultPrefix } + "signin")
+}
+                                                
+
+// @LINE:29
+def submit(): Call = {
+   Call("POST", _prefix + { _defaultPrefix } + "signin")
+}
+                                                
+    
+}
+                          
+
+// @LINE:22
+// @LINE:19
+// @LINE:18
+// @LINE:15
+// @LINE:14
+// @LINE:11
+// @LINE:8
 // @LINE:6
 class ReverseApplication {
     
 
-// @LINE:20
+// @LINE:22
 def delete(id:Long): Call = {
    Call("POST", _prefix + { _defaultPrefix } + "computers/" + implicitly[PathBindable[Long]].unbind("id", id) + "/delete")
 }
                                                 
 
-// @LINE:12
+// @LINE:8
+def main(): Call = {
+   Call("GET", _prefix + { _defaultPrefix } + "main")
+}
+                                                
+
+// @LINE:14
 def create(): Call = {
    Call("GET", _prefix + { _defaultPrefix } + "computers/new")
 }
                                                 
 
-// @LINE:16
+// @LINE:18
 def edit(id:Long): Call = {
    Call("GET", _prefix + { _defaultPrefix } + "computers/" + implicitly[PathBindable[Long]].unbind("id", id))
 }
                                                 
 
-// @LINE:17
+// @LINE:19
 def update(id:Long): Call = {
    Call("POST", _prefix + { _defaultPrefix } + "computers/" + implicitly[PathBindable[Long]].unbind("id", id))
 }
                                                 
 
-// @LINE:9
+// @LINE:11
 def list(p:Int = 0, s:String = "name", o:String = "asc", f:String = ""): Call = {
    Call("GET", _prefix + { _defaultPrefix } + "computers" + queryString(List(if(p == 0) None else Some(implicitly[QueryStringBindable[Int]].unbind("p", p)), if(s == "name") None else Some(implicitly[QueryStringBindable[String]].unbind("s", s)), if(o == "asc") None else Some(implicitly[QueryStringBindable[String]].unbind("o", o)), if(f == "") None else Some(implicitly[QueryStringBindable[String]].unbind("f", f)))))
 }
                                                 
 
-// @LINE:13
+// @LINE:15
 def save(): Call = {
    Call("POST", _prefix + { _defaultPrefix } + "computers")
 }
@@ -94,21 +124,24 @@ def index(): Call = {
                   
 
 
-// @LINE:23
-// @LINE:20
-// @LINE:17
-// @LINE:16
-// @LINE:13
-// @LINE:12
-// @LINE:9
+// @LINE:29
+// @LINE:28
+// @LINE:25
+// @LINE:22
+// @LINE:19
+// @LINE:18
+// @LINE:15
+// @LINE:14
+// @LINE:11
+// @LINE:8
 // @LINE:6
 package controllers.javascript {
 
-// @LINE:23
+// @LINE:25
 class ReverseAssets {
     
 
-// @LINE:23
+// @LINE:25
 def at : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Assets.at",
    """
@@ -122,17 +155,48 @@ def at : JavascriptReverseRoute = JavascriptReverseRoute(
 }
               
 
-// @LINE:20
-// @LINE:17
-// @LINE:16
-// @LINE:13
-// @LINE:12
-// @LINE:9
+// @LINE:29
+// @LINE:28
+class ReverseUserManager {
+    
+
+// @LINE:28
+def blank : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.UserManager.blank",
+   """
+      function() {
+      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "signin"})
+      }
+   """
+)
+                        
+
+// @LINE:29
+def submit : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.UserManager.submit",
+   """
+      function() {
+      return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "signin"})
+      }
+   """
+)
+                        
+    
+}
+              
+
+// @LINE:22
+// @LINE:19
+// @LINE:18
+// @LINE:15
+// @LINE:14
+// @LINE:11
+// @LINE:8
 // @LINE:6
 class ReverseApplication {
     
 
-// @LINE:20
+// @LINE:22
 def delete : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.delete",
    """
@@ -143,7 +207,18 @@ def delete : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:12
+// @LINE:8
+def main : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.Application.main",
+   """
+      function() {
+      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "main"})
+      }
+   """
+)
+                        
+
+// @LINE:14
 def create : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.create",
    """
@@ -154,7 +229,7 @@ def create : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:16
+// @LINE:18
 def edit : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.edit",
    """
@@ -165,7 +240,7 @@ def edit : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:17
+// @LINE:19
 def update : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.update",
    """
@@ -176,7 +251,7 @@ def update : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:9
+// @LINE:11
 def list : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.list",
    """
@@ -187,7 +262,7 @@ def list : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:13
+// @LINE:15
 def save : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.save",
    """
@@ -215,22 +290,25 @@ def index : JavascriptReverseRoute = JavascriptReverseRoute(
         
 
 
-// @LINE:23
-// @LINE:20
-// @LINE:17
-// @LINE:16
-// @LINE:13
-// @LINE:12
-// @LINE:9
+// @LINE:29
+// @LINE:28
+// @LINE:25
+// @LINE:22
+// @LINE:19
+// @LINE:18
+// @LINE:15
+// @LINE:14
+// @LINE:11
+// @LINE:8
 // @LINE:6
 package controllers.ref {
 
 
-// @LINE:23
+// @LINE:25
 class ReverseAssets {
     
 
-// @LINE:23
+// @LINE:25
 def at(path:String, file:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Assets.at(path, file), HandlerDef(this, "controllers.Assets", "at", Seq(classOf[String], classOf[String]), "GET", """ Map static resources from the /public folder to the /assets URL path""", _prefix + """assets/$file<.+>""")
 )
@@ -239,47 +317,74 @@ def at(path:String, file:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.
 }
                           
 
-// @LINE:20
-// @LINE:17
-// @LINE:16
-// @LINE:13
-// @LINE:12
-// @LINE:9
+// @LINE:29
+// @LINE:28
+class ReverseUserManager {
+    
+
+// @LINE:28
+def blank(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.UserManager.blank(), HandlerDef(this, "controllers.UserManager", "blank", Seq(), "GET", """User""", _prefix + """signin""")
+)
+                      
+
+// @LINE:29
+def submit(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.UserManager.submit(), HandlerDef(this, "controllers.UserManager", "submit", Seq(), "POST", """""", _prefix + """signin""")
+)
+                      
+    
+}
+                          
+
+// @LINE:22
+// @LINE:19
+// @LINE:18
+// @LINE:15
+// @LINE:14
+// @LINE:11
+// @LINE:8
 // @LINE:6
 class ReverseApplication {
     
 
-// @LINE:20
+// @LINE:22
 def delete(id:Long): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.delete(id), HandlerDef(this, "controllers.Application", "delete", Seq(classOf[Long]), "POST", """ Delete a computer""", _prefix + """computers/$id<[^/]+>/delete""")
 )
                       
 
-// @LINE:12
+// @LINE:8
+def main(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.Application.main(), HandlerDef(this, "controllers.Application", "main", Seq(), "GET", """""", _prefix + """main""")
+)
+                      
+
+// @LINE:14
 def create(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.create(), HandlerDef(this, "controllers.Application", "create", Seq(), "GET", """ Add computer""", _prefix + """computers/new""")
 )
                       
 
-// @LINE:16
+// @LINE:18
 def edit(id:Long): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.edit(id), HandlerDef(this, "controllers.Application", "edit", Seq(classOf[Long]), "GET", """ Edit existing computer""", _prefix + """computers/$id<[^/]+>""")
 )
                       
 
-// @LINE:17
+// @LINE:19
 def update(id:Long): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.update(id), HandlerDef(this, "controllers.Application", "update", Seq(classOf[Long]), "POST", """""", _prefix + """computers/$id<[^/]+>""")
 )
                       
 
-// @LINE:9
+// @LINE:11
 def list(p:Int, s:String, o:String, f:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.list(p, s, o, f), HandlerDef(this, "controllers.Application", "list", Seq(classOf[Int], classOf[String], classOf[String], classOf[String]), "GET", """ Computers list (look at the default values for pagination parameters)""", _prefix + """computers""")
 )
                       
 
-// @LINE:13
+// @LINE:15
 def save(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.save(), HandlerDef(this, "controllers.Application", "save", Seq(), "POST", """""", _prefix + """computers""")
 )
