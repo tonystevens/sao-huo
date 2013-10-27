@@ -1,4 +1,4 @@
-@(signinForm: Form[Users])
+@(message: String, signinForm: Form[Users])
 
 @import helper._
 @import helper.twitterBootstrap._
@@ -9,10 +9,10 @@
 
 @main {
     
-    @helper.form(action = routes.UserManager.submit) {
+    @helper.form(action = routes.SignIn.signin) {
         
         <fieldset>
-            <legend>Account information</legend>
+            <legend>@message</legend>
             
             @inputText(
                 signinForm("email"), '_label -> "Email",
@@ -30,6 +30,7 @@
         <div class="actions">
             <input type="submit" class="btn primary" value="Sign In">
             <a href="@routes.Application.index()" class="btn">Cancel</a>
+            <a href="@routes.SignUp.blank()" class="btn">Don't have an account?</a>
         </div>
         
     }

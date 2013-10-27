@@ -22,18 +22,32 @@ public class Users extends Model {
     @Constraints.Required
     public String password;
 
+    public String first_name;
 
-    public Users() {}
+    public String last_name;
 
-    public Users(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
+    public String address_1;
+
+    public String address_2;
+
+    public String city;
+
+    public String state;
+
+    public String zip_code;
+
+    public String cell_phone;
+
+    public String home_phone;
 
     /**
      * Generic query helper for entity
      */
     public static Finder<String, Users> find = new Finder<String, Users>(String.class, Users.class);
+
+    public static List<Users> findByEmail(String email) {
+        return find.where().eq("email", email).findList();
+    }
 
     public static List<Users> findByEmailAndPassword(String email, String password) {
         return find.where().eq("email", email).eq("password", password).orderBy("email asc").findList();
@@ -41,6 +55,12 @@ public class Users extends Model {
 
     public static List<Users> findAll(){
         return find.findList();
+    }
+
+    @Override
+    public String toString(){
+        StringBuffer sb = new StringBuffer().append("email :"+email).append(", first_name: "+first_name).append(", last_name: "+last_name);
+        return sb.toString();
     }
 
 }

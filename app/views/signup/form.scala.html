@@ -1,0 +1,97 @@
+@(message: String, signupForm: Form[Users])
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@title = {
+    Sign Up
+}
+
+@main {
+    
+    @helper.form(action = routes.SignUp.signup) {
+
+        <fieldset>
+            <legend>Account information</legend>
+
+            @inputText(
+                signupForm("email"), '_label -> "Email",
+                '_help -> "Enter a valid email address."
+            )
+
+            @inputPassword(
+                signupForm("password"),
+                '_label -> "Password",
+                '_help -> "A password must be at least 6 characters. "
+            )
+
+            @inputPassword(
+                signupForm("repeatPassword"),
+                '_label -> "Repeat password",
+                '_help -> "Please repeat your password again.",
+                '_error -> signupForm.error("password")
+            )
+
+        </fieldset>
+
+        <fieldset>
+
+            <legend>Contact information</legend>
+
+            @inputText(
+                signupForm("first_name"), '_label -> "First Name",
+                '_help -> "First Name."
+            )
+
+            @inputText(
+                signupForm("last_name"), '_label -> "Last Name",
+                '_help -> "Enter a valid email address."
+            )
+
+            @inputText(
+                signupForm("address1"), '_label -> "Address 1",
+                '_help -> "Street, Ave, Blvd, Court, etc."
+            )
+
+            @inputText(
+                signupForm("address2"), '_label -> "Address 2",
+                '_help -> "Apt, Unit #"
+            )
+
+            @inputText(
+                signupForm("city"), '_label -> "City",
+                '_help -> "Enter a city."
+            )
+
+            @inputText(
+                signupForm("state"), '_label -> "State",
+                '_help -> "Enter a state."
+            )
+
+            @inputText(
+                signupForm("zip_code"), '_label -> "Zip Code",
+                '_help -> "Example: 19701"
+            )
+
+            @inputText(
+                signupForm("cell_phone"), '_label -> "Cell Phone",
+                '_help -> "(XXX)-XXX-XXXX"
+            )
+
+            @inputText(
+                signupForm("home_phone"), '_label -> "Home Phone",
+                '_help -> "(XXX)-XXX-XXXX"
+            )
+
+
+
+        </fieldset>
+        
+        <div class="actions">
+            <input type="submit" class="btn primary" value="Sign Up">
+            <a href="@routes.Application.index()" class="btn">Cancel</a>
+        </div>
+        
+    }
+    
+}

@@ -1,6 +1,6 @@
 // @SOURCE:/Users/TZ029887/Documents/computer-database/conf/routes
-// @HASH:bb710b83799157d94032f87abf275e86c1eb23f7
-// @DATE:Thu Oct 24 13:41:46 CDT 2013
+// @HASH:fadd28cb861ae97936951b86fd7c191ae86b58df
+// @DATE:Sun Oct 27 15:49:51 CDT 2013
 
 import Routes.{prefix => _prefix, defaultPrefix => _defaultPrefix}
 import play.core._
@@ -13,6 +13,8 @@ import play.libs.F
 import Router.queryString
 
 
+// @LINE:31
+// @LINE:30
 // @LINE:29
 // @LINE:28
 // @LINE:25
@@ -39,20 +41,40 @@ def at(file:String): Call = {
 }
                           
 
+// @LINE:31
+// @LINE:30
+class ReverseSignUp {
+    
+
+// @LINE:31
+def signup(): Call = {
+   Call("POST", _prefix + { _defaultPrefix } + "signup")
+}
+                                                
+
+// @LINE:30
+def blank(): Call = {
+   Call("GET", _prefix + { _defaultPrefix } + "signup")
+}
+                                                
+    
+}
+                          
+
 // @LINE:29
 // @LINE:28
-class ReverseUserManager {
+class ReverseSignIn {
     
+
+// @LINE:29
+def signin(): Call = {
+   Call("POST", _prefix + { _defaultPrefix } + "signin")
+}
+                                                
 
 // @LINE:28
 def blank(): Call = {
    Call("GET", _prefix + { _defaultPrefix } + "signin")
-}
-                                                
-
-// @LINE:29
-def submit(): Call = {
-   Call("POST", _prefix + { _defaultPrefix } + "signin")
 }
                                                 
     
@@ -124,6 +146,8 @@ def index(): Call = {
                   
 
 
+// @LINE:31
+// @LINE:30
 // @LINE:29
 // @LINE:28
 // @LINE:25
@@ -155,28 +179,58 @@ def at : JavascriptReverseRoute = JavascriptReverseRoute(
 }
               
 
-// @LINE:29
-// @LINE:28
-class ReverseUserManager {
+// @LINE:31
+// @LINE:30
+class ReverseSignUp {
     
 
-// @LINE:28
-def blank : JavascriptReverseRoute = JavascriptReverseRoute(
-   "controllers.UserManager.blank",
+// @LINE:31
+def signup : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.SignUp.signup",
    """
       function() {
-      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "signin"})
+      return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "signup"})
       }
    """
 )
                         
 
+// @LINE:30
+def blank : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.SignUp.blank",
+   """
+      function() {
+      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "signup"})
+      }
+   """
+)
+                        
+    
+}
+              
+
 // @LINE:29
-def submit : JavascriptReverseRoute = JavascriptReverseRoute(
-   "controllers.UserManager.submit",
+// @LINE:28
+class ReverseSignIn {
+    
+
+// @LINE:29
+def signin : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.SignIn.signin",
    """
       function() {
       return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "signin"})
+      }
+   """
+)
+                        
+
+// @LINE:28
+def blank : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.SignIn.blank",
+   """
+      function() {
+      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "signin"})
       }
    """
 )
@@ -290,6 +344,8 @@ def index : JavascriptReverseRoute = JavascriptReverseRoute(
         
 
 
+// @LINE:31
+// @LINE:30
 // @LINE:29
 // @LINE:28
 // @LINE:25
@@ -317,20 +373,40 @@ def at(path:String, file:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.
 }
                           
 
-// @LINE:29
-// @LINE:28
-class ReverseUserManager {
+// @LINE:31
+// @LINE:30
+class ReverseSignUp {
     
 
-// @LINE:28
-def blank(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
-   controllers.UserManager.blank(), HandlerDef(this, "controllers.UserManager", "blank", Seq(), "GET", """User""", _prefix + """signin""")
+// @LINE:31
+def signup(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.SignUp.signup(), HandlerDef(this, "controllers.SignUp", "signup", Seq(), "POST", """""", _prefix + """signup""")
 )
                       
 
+// @LINE:30
+def blank(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.SignUp.blank(), HandlerDef(this, "controllers.SignUp", "blank", Seq(), "GET", """""", _prefix + """signup""")
+)
+                      
+    
+}
+                          
+
 // @LINE:29
-def submit(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
-   controllers.UserManager.submit(), HandlerDef(this, "controllers.UserManager", "submit", Seq(), "POST", """""", _prefix + """signin""")
+// @LINE:28
+class ReverseSignIn {
+    
+
+// @LINE:29
+def signin(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.SignIn.signin(), HandlerDef(this, "controllers.SignIn", "signin", Seq(), "POST", """""", _prefix + """signin""")
+)
+                      
+
+// @LINE:28
+def blank(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.SignIn.blank(), HandlerDef(this, "controllers.SignIn", "blank", Seq(), "GET", """User""", _prefix + """signin""")
 )
                       
     

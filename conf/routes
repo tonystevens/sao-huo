@@ -25,6 +25,7 @@ POST    /computers/:id/delete       controllers.Application.delete(id:Long)
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 #User
-GET     /signin                     controllers.UserManager.blank()
-POST    /signin                     controllers.UserManager.submit()
-
+GET     /signin                     controllers.SignIn.blank()
+POST    /signin                     controllers.SignIn.signin()
+GET     /signup                     controllers.SignUp.blank()
+POST    /signup                     controllers.SignUp.signup()
