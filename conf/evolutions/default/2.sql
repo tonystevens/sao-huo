@@ -620,6 +620,10 @@ insert into computer (id,name,introduced,discontinued,company_id) values (572,'D
 insert into computer (id,name,introduced,discontinued,company_id) values (573,'Gateway LT3103U','2008-01-01',null,null);
 insert into computer (id,name,introduced,discontinued,company_id) values (574,'iPhone 4S','2011-10-14',null,1);
 
+insert into users (email,password,first_name,last_name,address_1,address_2,city,state,zip_code,cell_phone,home_phone) values ('tonywdzyj@gmail.com','abcd','Tony','Zhang','8866 Glenwood CT','','Overland Park','KS','66212','201-616-8828','201-616-8828');
+
+insert into payment ( id, cc_name, cc_number, cc_address_1, cc_address_2, cc_city, cc_state, cc_zip_code, users_email) values (1, 'ER BI', '4888937020831501', 'BANK OF AMERICA', 'P.O. BOX 15019', 'WILMINGTON', 'DE', '19886-5019','tonywdzyj@gmail.com');
+
 # --- !Downs
 
 delete from computer;

@@ -34,13 +34,13 @@ create table users (
 
 create table payment (
   id                        bigint not null,
+  cc_name                   varchar(255),
   cc_number                 varchar(255),
   cc_address_1              varchar(255),
   cc_address_2              varchar(255),
   cc_city                   varchar(80),
   cc_state                  varchar(80),
   cc_zip_code               varchar(20),
-  cc_phone                  varchar(20),
   users_email               varchar(255),
   constraint pk_payment primary key (id))
 ;

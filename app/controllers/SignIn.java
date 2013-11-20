@@ -26,9 +26,6 @@ public class SignIn extends Controller {
             return badRequest(form.render("Please fill with valid email and password",filledForm));
         }
 
-        System.out.println("filledForm: "+filledForm);
-        System.out.println("filledForm.get(): "+filledForm.get());
-
         final String email = filledForm.get().email;
         final String password = filledForm.get().password;
 
@@ -39,17 +36,23 @@ public class SignIn extends Controller {
         // Check if the username is valid
         if(!filledForm.hasErrors()) {
             List<Users> userList =  Users.findAll();
+            System.out.println("Size: "+userList.size());
             for(Users user : userList){
+                System.out.println("email: "+user.email);
+                System.out.println("password: "+user.password);
                 if(user.email.equals(email) && user.password.equals(password))
                     login_user = user;
             }
         }
 
+        System.out.println("login_user: "+login_user);
+
         if(login_user == null) {
             return ok(form.render("email and password not found", signinForm));
         } else {
             Users created = filledForm.get();
-            return ok(summary.render("Welcome back, " + login_user.first_name + " " + login_user.last_name +" !",created));
+            System.out.println("User: "+created.email);
+            return UserMgr.pmtlist(email,password);
         }
     }
 

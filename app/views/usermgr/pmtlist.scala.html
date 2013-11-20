@@ -1,10 +1,10 @@
 @(user: Users, payments: java.util.List[Payment])
 
-    @header(key:String, title:String) = {
-        <th>
+@header(key:String, title:String) = {
+    <th>
         @title
-        </th>
-    }
+    </th>
+}
 
 @main {
 
@@ -32,26 +32,28 @@
             </thead>
             <tbody>
 
-            @for(pmt <- payments) {
-                <tr>
-                    <td>@pmt.cc_number</td>
-                    <td>@pmt.cc_address_1</td>
-                    <td>
-                    @if(pmt.cc_address_2 == null) {
-                        <em>-</em>
-                    } else {
-                        @pmt.cc_address_2
-                    }
-                    </td>
-                    <td>@pmt.cc_city</td>
-                    <td>@pmt.cc_state</td>
-                    <td>@pmt.cc_zip_code</td>
-                </tr>
-            }
+                @for(pmt <- payments) {
+                    <tr>
+                        <td>@pmt.cc_number</td>
+                        <td>@pmt.cc_address_1</td>
+                        <td>
+                            @if(pmt.cc_address_2 == null) {
+                                <em>-</em>
+                            } else {
+                                @pmt.cc_address_2
+                            }
+                        </td>
+                        <td>@pmt.cc_city</td>
+                        <td>@pmt.cc_state</td>
+                        <td>@pmt.cc_zip_code</td>
+                    </tr>
+                }
 
             </tbody>
         </table>
 
     }
-
+        
 }
+
+            

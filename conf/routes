@@ -2,30 +2,33 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# Default path will just redirect to the computer list
-GET     /                           controllers.Application.index()
+# Default path will just redirect to the computer pmtlist
+GET         /                            controllers.Application.index()
 
-GET     /main                       controllers.Application.main()
+GET         /main                        controllers.Application.main()
 
-# Computers list (look at the default values for pagination parameters)
-GET     /computers                  controllers.Application.list(p:Int ?= 0, s ?= "name", o ?= "asc", f ?= "")
+GET         /usermain                    controllers.UserMgr.pmtmain()
+POST        /userpmts                    controllers.UserMgr.pmtlist(e ?="sample@saohuo.com", p ?="abcd")
+
+# Computers pmtlist (look at the default values for pagination parameters)
+GET         /computers                   controllers.Application.list(p:Int ?= 0, s ?= "name", o ?= "asc", f ?= "")
 
 # Add computer
-GET     /computers/new              controllers.Application.create()
-POST    /computers                  controllers.Application.save()
+GET         /computers/new               controllers.Application.create()
+POST        /computers                   controllers.Application.save()
 
 # Edit existing computer
-GET     /computers/:id              controllers.Application.edit(id:Long)
-POST    /computers/:id              controllers.Application.update(id:Long)
+GET         /computers/:id               controllers.Application.edit(id:Long)
+POST        /computers/:id               controllers.Application.update(id:Long)
 
 # Delete a computer
-POST    /computers/:id/delete       controllers.Application.delete(id:Long)
+POST        /computers/:id/delete        controllers.Application.delete(id:Long)
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET         /assets/*file                controllers.Assets.at(path="/public", file)
 
 #User
-GET     /signin                     controllers.SignIn.blank()
-POST    /signin                     controllers.SignIn.signin()
-GET     /signup                     controllers.SignUp.blank()
-POST    /signup                     controllers.SignUp.signup()
+GET         /signin                      controllers.SignIn.blank()
+POST        /signin                      controllers.SignIn.signin()
+GET         /signup                      controllers.SignUp.blank()
+POST        /signup                      controllers.SignUp.signup()
