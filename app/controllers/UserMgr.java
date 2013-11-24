@@ -5,7 +5,7 @@ import models.Users;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.createForm;
+import views.html.usermgr.createPmtForm;
 import views.html.editForm;
 import views.html.usermgr.pmtlist;
 
@@ -22,13 +22,16 @@ public class UserMgr extends Controller {
     public final static String DEFAULT_PWD = "abcd";
 
     public static Result pmtmain(){
-        return pmtlist(DEFAULT_EML,DEFAULT_PWD);
+        return pmtlist();
     }
 
-    public static Result pmtlist(String email, String password) {
+    public static Result pmtlist() {
 
-        System.out.println("email: "+email);
-        System.out.println("password: "+password);
+        String email = session("user");
+        String password = session("pwd");
+
+        System.out.println("1. email: "+email);
+        System.out.println("2. password: "+password);
 
         if(email.equals(DEFAULT_EML) && email.equals(DEFAULT_PWD))
             return redirect(routes.SignIn.signin());
@@ -43,6 +46,23 @@ public class UserMgr extends Controller {
         System.out.println("payments size: "+payments.size());
         return ok(pmtlist.render(user,payments));
 
+    }
+
+    public static Result save() {
+        Form<Payment> paymentForm = form(Payment.class).bindFromRequest();
+        Payment newPmt = paymentForm.get();
+        newPmt.users = Users.findByEmail(session("user")).get(0);
+        if(paymentForm.hasErrors()) {
+            return badRequest(createPmtForm.render(paymentForm));
+        }
+        newPmt.save();
+        flash("success", "Payment method " + paymentForm.get().cc_name + " has been created");
+        return pmtlist();
+    }
+
+    public static Result create() {
+        Form<Payment> paymentForm = form(Payment.class);
+        return ok(createPmtForm.render(paymentForm));
     }
     
 

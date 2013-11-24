@@ -1,0 +1,32 @@
+@(paymentForm: Form[Payment])
+
+@import helper._
+
+@implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapInput.render) } 
+
+@main {
+    
+    <h1>Add a computer</h1>
+    
+    @form(routes.UserMgr.save()) {
+        
+        <fieldset>
+
+            @inputText(paymentForm("cc_name"), '_label -> "Credit Card Nick Name")
+            @inputText(paymentForm("cc_number"), '_label -> "Credit Card Number")
+            @inputText(paymentForm("cc_address_1"), '_label -> "Address 1")
+            @inputText(paymentForm("cc_address_2"), '_label -> "Address 2")
+            @inputText(paymentForm("cc_city"), '_label -> "City")
+            @inputText(paymentForm("cc_state"), '_label -> "State")
+            @inputText(paymentForm("cc_zip_code"), '_label -> "Zip Code")
+
+        </fieldset>
+        
+        <div class="actions">
+            <input type="submit" value="Create this payment" class="btn primary"> or
+            <a href="@routes.UserMgr.pmtlist()" class="btn">Cancel</a>
+        </div>
+        
+    }
+    
+}

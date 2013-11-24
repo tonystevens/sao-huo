@@ -20,6 +20,9 @@ public class Payment extends Model {
 
 	@Id
     public Long id;
+
+    @Constraints.Required
+    public String cc_name;
     
     @Constraints.Required
     public String cc_number;

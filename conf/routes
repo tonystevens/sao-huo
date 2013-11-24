@@ -8,7 +8,9 @@ GET         /                            controllers.Application.index()
 GET         /main                        controllers.Application.main()
 
 GET         /usermain                    controllers.UserMgr.pmtmain()
-POST        /userpmts                    controllers.UserMgr.pmtlist(e ?="sample@saohuo.com", p ?="abcd")
+GET         /userpmts                    controllers.UserMgr.pmtlist()
+GET         /userpmts/new                controllers.UserMgr.create()
+POST        /userpmts                    controllers.UserMgr.save()
 
 # Computers pmtlist (look at the default values for pagination parameters)
 GET         /computers                   controllers.Application.list(p:Int ?= 0, s ?= "name", o ?= "asc", f ?= "")

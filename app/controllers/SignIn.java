@@ -52,7 +52,9 @@ public class SignIn extends Controller {
         } else {
             Users created = filledForm.get();
             System.out.println("User: "+created.email);
-            return UserMgr.pmtlist(email,password);
+            session("user",email);
+            session("pwd",password);
+            return UserMgr.pmtlist();
         }
     }
 
