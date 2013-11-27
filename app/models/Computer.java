@@ -47,14 +47,14 @@ public class Computer extends Model {
      * @param filter Filter applied on the name column
      */
     public static Page<Computer> page(int page, int pageSize, String sortBy, String order, String filter) {
-        return 
-            find.where()
-                .ilike("name", "%" + filter + "%")
-                .orderBy(sortBy + " " + order)
-                .fetch("company")
-                .findPagingList(pageSize)
-                .setFetchAhead(false)
-                .getPage(page);
+        return
+                find.where()
+                        .ilike("name", "%" + filter + "%")
+                        .orderBy(sortBy + " " + order)
+                        .fetch("company")
+                        .findPagingList(pageSize)
+                        .setFetchAhead(false)
+                        .getPage(page);
     }
     
 }

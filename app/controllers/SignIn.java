@@ -54,7 +54,7 @@ public class SignIn extends Controller {
             System.out.println("User: "+created.email);
             session("user",email);
             session("pwd",password);
-            return UserMgr.pmtlist();
+            return UserMgr.pmtlist(0, "cc_name","asc","");
         }
     }
 

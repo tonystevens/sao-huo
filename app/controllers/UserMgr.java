@@ -23,10 +23,10 @@ public class UserMgr extends Controller {
     public final static String DEFAULT_PWD = "abcd";
 
     public static Result pmtmain(){
-        return pmtlist();
+        return pmtlist(0, "name", "asc", "");
     }
 
-    public static Result pmtlist() {
+    public static Result pmtlist(int page, String sortBy, String order, String filter) {
 
         String email = session("user");
         String password = session("pwd");
@@ -43,9 +43,7 @@ public class UserMgr extends Controller {
             return redirect(routes.SignIn.signin());
 
         Users user = userList.get(0);
-        List<Payment> payments = Payment.findByUser(user);
-        System.out.println("payments size: "+payments.size());
-        return ok(pmtlist.render(user,payments));
+        return ok(pmtlist.render(user, Payment.page(page, 10, sortBy, order, filter), sortBy, order, filter));
 
     }
 
@@ -58,7 +56,7 @@ public class UserMgr extends Controller {
         }
         newPmt.save();
         flash("success", "Payment method " + paymentForm.get().cc_name + " has been created");
-        return pmtlist();
+        return pmtlist(0,"cc_name", "asc", "");
     }
 
     public static Result create() {
@@ -69,7 +67,7 @@ public class UserMgr extends Controller {
     public static Result delete(Long id) {
         Payment.find.ref(id).delete();
         flash("success", "Payment method has been deleted");
-        return pmtlist();
+        return pmtlist(0,"cc_name", "asc", "");
     }
 
     public static Result update(Long id) {
@@ -79,16 +77,16 @@ public class UserMgr extends Controller {
         }
         paymentForm.get().update(id);
         flash("success", "Payment method " + paymentForm.get().cc_name + " has been updated");
-        return pmtlist();
+        return pmtlist(0,"cc_name", "asc", "");
     }
 
 
     public static Result edit(Long id) {
         Form<Payment> paymentForm = form(Payment.class).fill(
-                Payment.find.byId(id)
+            Payment.find.byId(id)
         );
         return ok(
-                editPmtForm.render(id, paymentForm)
+            editPmtForm.render(id, paymentForm)
         );
     }
 

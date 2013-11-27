@@ -8,7 +8,7 @@ GET         /                            controllers.Application.index()
 GET         /main                        controllers.Application.main()
 
 GET         /usermain                    controllers.UserMgr.pmtmain()
-GET         /userpmts                    controllers.UserMgr.pmtlist()
+GET         /userpmts                    controllers.UserMgr.pmtlist(p:Int ?= 0, s ?= "cc_name", o ?= "asc", f ?= "")
 GET         /userpmts/new                controllers.UserMgr.create()
 POST        /userpmts                    controllers.UserMgr.save()
 POST        /userpmts/:id/delete         controllers.UserMgr.delete(id:Long)
