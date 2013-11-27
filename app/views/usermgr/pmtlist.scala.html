@@ -28,7 +28,7 @@
         <table class="computers zebra-striped">
             <thead>
                 <tr>
-                    @header("cc_name", "CC Nick Name")
+                    @header("cc_name", "Owner Name")
                     @header("cc_number", "Credit Card Number")
                     @header("cc_address_1", "Address 1")
                     @header("cc_address_2", "Address 2")
@@ -41,7 +41,7 @@
 
                 @for(pmt <- payments) {
                     <tr>
-                        <td>@pmt.cc_name</td>
+                        <td><a href="@routes.UserMgr.edit(pmt.id)">@pmt.cc_name</a></td>
                         <td>@pmt.cc_number</td>
                         <td>@pmt.cc_address_1</td>
                         <td>

@@ -1,6 +1,6 @@
 // @SOURCE:/Users/TZ029887/Documents/computer-database/conf/routes
-// @HASH:b9cdb75027b5469b19c944e15240ce61e647dbd1
-// @DATE:Sun Nov 24 16:16:47 CST 2013
+// @HASH:69d520d39b50af550809540fbc1c3ee13f3a79f1
+// @DATE:Wed Nov 27 11:02:57 CST 2013
 
 import Routes.{prefix => _prefix, defaultPrefix => _defaultPrefix}
 import play.core._
@@ -13,17 +13,20 @@ import play.libs.F
 import Router.queryString
 
 
+// @LINE:39
+// @LINE:38
+// @LINE:37
 // @LINE:36
-// @LINE:35
-// @LINE:34
 // @LINE:33
 // @LINE:30
 // @LINE:27
-// @LINE:24
+// @LINE:26
 // @LINE:23
-// @LINE:20
+// @LINE:22
 // @LINE:19
 // @LINE:16
+// @LINE:15
+// @LINE:14
 // @LINE:13
 // @LINE:12
 // @LINE:11
@@ -32,18 +35,18 @@ import Router.queryString
 // @LINE:6
 package controllers {
 
-// @LINE:34
-// @LINE:33
+// @LINE:37
+// @LINE:36
 class ReverseSignIn {
     
 
-// @LINE:34
+// @LINE:37
 def signin(): Call = {
    Call("POST", _prefix + { _defaultPrefix } + "signin")
 }
                                                 
 
-// @LINE:33
+// @LINE:36
 def blank(): Call = {
    Call("GET", _prefix + { _defaultPrefix } + "signin")
 }
@@ -52,11 +55,11 @@ def blank(): Call = {
 }
                           
 
-// @LINE:30
+// @LINE:33
 class ReverseAssets {
     
 
-// @LINE:30
+// @LINE:33
 def at(file:String): Call = {
    Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[PathBindable[String]].unbind("file", file))
 }
@@ -65,18 +68,18 @@ def at(file:String): Call = {
 }
                           
 
-// @LINE:36
-// @LINE:35
+// @LINE:39
+// @LINE:38
 class ReverseSignUp {
     
 
-// @LINE:36
+// @LINE:39
 def signup(): Call = {
    Call("POST", _prefix + { _defaultPrefix } + "signup")
 }
                                                 
 
-// @LINE:35
+// @LINE:38
 def blank(): Call = {
    Call("GET", _prefix + { _defaultPrefix } + "signup")
 }
@@ -85,6 +88,9 @@ def blank(): Call = {
 }
                           
 
+// @LINE:16
+// @LINE:15
+// @LINE:14
 // @LINE:13
 // @LINE:12
 // @LINE:11
@@ -92,9 +98,9 @@ def blank(): Call = {
 class ReverseUserMgr {
     
 
-// @LINE:11
-def pmtlist(): Call = {
-   Call("GET", _prefix + { _defaultPrefix } + "userpmts")
+// @LINE:14
+def delete(id:Long): Call = {
+   Call("POST", _prefix + { _defaultPrefix } + "userpmts/" + implicitly[PathBindable[Long]].unbind("id", id) + "/delete")
 }
                                                 
 
@@ -104,33 +110,51 @@ def pmtmain(): Call = {
 }
                                                 
 
-// @LINE:13
-def save(): Call = {
-   Call("POST", _prefix + { _defaultPrefix } + "userpmts")
-}
-                                                
-
 // @LINE:12
 def create(): Call = {
    Call("GET", _prefix + { _defaultPrefix } + "userpmts/new")
+}
+                                                
+
+// @LINE:16
+def edit(id:Long): Call = {
+   Call("GET", _prefix + { _defaultPrefix } + "userpmts/" + implicitly[PathBindable[Long]].unbind("id", id))
+}
+                                                
+
+// @LINE:15
+def update(id:Long): Call = {
+   Call("POST", _prefix + { _defaultPrefix } + "userpmts/" + implicitly[PathBindable[Long]].unbind("id", id))
+}
+                                                
+
+// @LINE:11
+def pmtlist(): Call = {
+   Call("GET", _prefix + { _defaultPrefix } + "userpmts")
+}
+                                                
+
+// @LINE:13
+def save(): Call = {
+   Call("POST", _prefix + { _defaultPrefix } + "userpmts")
 }
                                                 
     
 }
                           
 
+// @LINE:30
 // @LINE:27
-// @LINE:24
+// @LINE:26
 // @LINE:23
-// @LINE:20
+// @LINE:22
 // @LINE:19
-// @LINE:16
 // @LINE:8
 // @LINE:6
 class ReverseApplication {
     
 
-// @LINE:27
+// @LINE:30
 def delete(id:Long): Call = {
    Call("POST", _prefix + { _defaultPrefix } + "computers/" + implicitly[PathBindable[Long]].unbind("id", id) + "/delete")
 }
@@ -142,31 +166,31 @@ def main(): Call = {
 }
                                                 
 
-// @LINE:19
+// @LINE:22
 def create(): Call = {
    Call("GET", _prefix + { _defaultPrefix } + "computers/new")
 }
                                                 
 
-// @LINE:23
+// @LINE:26
 def edit(id:Long): Call = {
    Call("GET", _prefix + { _defaultPrefix } + "computers/" + implicitly[PathBindable[Long]].unbind("id", id))
 }
                                                 
 
-// @LINE:24
+// @LINE:27
 def update(id:Long): Call = {
    Call("POST", _prefix + { _defaultPrefix } + "computers/" + implicitly[PathBindable[Long]].unbind("id", id))
 }
                                                 
 
-// @LINE:16
+// @LINE:19
 def list(p:Int = 0, s:String = "name", o:String = "asc", f:String = ""): Call = {
    Call("GET", _prefix + { _defaultPrefix } + "computers" + queryString(List(if(p == 0) None else Some(implicitly[QueryStringBindable[Int]].unbind("p", p)), if(s == "name") None else Some(implicitly[QueryStringBindable[String]].unbind("s", s)), if(o == "asc") None else Some(implicitly[QueryStringBindable[String]].unbind("o", o)), if(f == "") None else Some(implicitly[QueryStringBindable[String]].unbind("f", f)))))
 }
                                                 
 
-// @LINE:20
+// @LINE:23
 def save(): Call = {
    Call("POST", _prefix + { _defaultPrefix } + "computers")
 }
@@ -184,17 +208,20 @@ def index(): Call = {
                   
 
 
+// @LINE:39
+// @LINE:38
+// @LINE:37
 // @LINE:36
-// @LINE:35
-// @LINE:34
 // @LINE:33
 // @LINE:30
 // @LINE:27
-// @LINE:24
+// @LINE:26
 // @LINE:23
-// @LINE:20
+// @LINE:22
 // @LINE:19
 // @LINE:16
+// @LINE:15
+// @LINE:14
 // @LINE:13
 // @LINE:12
 // @LINE:11
@@ -203,12 +230,12 @@ def index(): Call = {
 // @LINE:6
 package controllers.javascript {
 
-// @LINE:34
-// @LINE:33
+// @LINE:37
+// @LINE:36
 class ReverseSignIn {
     
 
-// @LINE:34
+// @LINE:37
 def signin : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.SignIn.signin",
    """
@@ -219,7 +246,7 @@ def signin : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:33
+// @LINE:36
 def blank : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.SignIn.blank",
    """
@@ -233,11 +260,11 @@ def blank : JavascriptReverseRoute = JavascriptReverseRoute(
 }
               
 
-// @LINE:30
+// @LINE:33
 class ReverseAssets {
     
 
-// @LINE:30
+// @LINE:33
 def at : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Assets.at",
    """
@@ -251,12 +278,12 @@ def at : JavascriptReverseRoute = JavascriptReverseRoute(
 }
               
 
-// @LINE:36
-// @LINE:35
+// @LINE:39
+// @LINE:38
 class ReverseSignUp {
     
 
-// @LINE:36
+// @LINE:39
 def signup : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.SignUp.signup",
    """
@@ -267,7 +294,7 @@ def signup : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:35
+// @LINE:38
 def blank : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.SignUp.blank",
    """
@@ -281,6 +308,9 @@ def blank : JavascriptReverseRoute = JavascriptReverseRoute(
 }
               
 
+// @LINE:16
+// @LINE:15
+// @LINE:14
 // @LINE:13
 // @LINE:12
 // @LINE:11
@@ -288,12 +318,12 @@ def blank : JavascriptReverseRoute = JavascriptReverseRoute(
 class ReverseUserMgr {
     
 
-// @LINE:11
-def pmtlist : JavascriptReverseRoute = JavascriptReverseRoute(
-   "controllers.UserMgr.pmtlist",
+// @LINE:14
+def delete : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.UserMgr.delete",
    """
-      function() {
-      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "userpmts"})
+      function(id) {
+      return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "userpmts/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("id", id) + "/delete"})
       }
    """
 )
@@ -310,17 +340,6 @@ def pmtmain : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:13
-def save : JavascriptReverseRoute = JavascriptReverseRoute(
-   "controllers.UserMgr.save",
-   """
-      function() {
-      return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "userpmts"})
-      }
-   """
-)
-                        
-
 // @LINE:12
 def create : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.UserMgr.create",
@@ -331,22 +350,66 @@ def create : JavascriptReverseRoute = JavascriptReverseRoute(
    """
 )
                         
+
+// @LINE:16
+def edit : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.UserMgr.edit",
+   """
+      function(id) {
+      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "userpmts/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("id", id)})
+      }
+   """
+)
+                        
+
+// @LINE:15
+def update : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.UserMgr.update",
+   """
+      function(id) {
+      return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "userpmts/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("id", id)})
+      }
+   """
+)
+                        
+
+// @LINE:11
+def pmtlist : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.UserMgr.pmtlist",
+   """
+      function() {
+      return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "userpmts"})
+      }
+   """
+)
+                        
+
+// @LINE:13
+def save : JavascriptReverseRoute = JavascriptReverseRoute(
+   "controllers.UserMgr.save",
+   """
+      function() {
+      return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "userpmts"})
+      }
+   """
+)
+                        
     
 }
               
 
+// @LINE:30
 // @LINE:27
-// @LINE:24
+// @LINE:26
 // @LINE:23
-// @LINE:20
+// @LINE:22
 // @LINE:19
-// @LINE:16
 // @LINE:8
 // @LINE:6
 class ReverseApplication {
     
 
-// @LINE:27
+// @LINE:30
 def delete : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.delete",
    """
@@ -368,7 +431,7 @@ def main : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:19
+// @LINE:22
 def create : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.create",
    """
@@ -379,7 +442,7 @@ def create : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:23
+// @LINE:26
 def edit : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.edit",
    """
@@ -390,7 +453,7 @@ def edit : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:24
+// @LINE:27
 def update : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.update",
    """
@@ -401,7 +464,7 @@ def update : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:16
+// @LINE:19
 def list : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.list",
    """
@@ -412,7 +475,7 @@ def list : JavascriptReverseRoute = JavascriptReverseRoute(
 )
                         
 
-// @LINE:20
+// @LINE:23
 def save : JavascriptReverseRoute = JavascriptReverseRoute(
    "controllers.Application.save",
    """
@@ -440,17 +503,20 @@ def index : JavascriptReverseRoute = JavascriptReverseRoute(
         
 
 
+// @LINE:39
+// @LINE:38
+// @LINE:37
 // @LINE:36
-// @LINE:35
-// @LINE:34
 // @LINE:33
 // @LINE:30
 // @LINE:27
-// @LINE:24
+// @LINE:26
 // @LINE:23
-// @LINE:20
+// @LINE:22
 // @LINE:19
 // @LINE:16
+// @LINE:15
+// @LINE:14
 // @LINE:13
 // @LINE:12
 // @LINE:11
@@ -460,18 +526,18 @@ def index : JavascriptReverseRoute = JavascriptReverseRoute(
 package controllers.ref {
 
 
-// @LINE:34
-// @LINE:33
+// @LINE:37
+// @LINE:36
 class ReverseSignIn {
     
 
-// @LINE:34
+// @LINE:37
 def signin(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.SignIn.signin(), HandlerDef(this, "controllers.SignIn", "signin", Seq(), "POST", """""", _prefix + """signin""")
 )
                       
 
-// @LINE:33
+// @LINE:36
 def blank(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.SignIn.blank(), HandlerDef(this, "controllers.SignIn", "blank", Seq(), "GET", """User""", _prefix + """signin""")
 )
@@ -480,11 +546,11 @@ def blank(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
 }
                           
 
-// @LINE:30
+// @LINE:33
 class ReverseAssets {
     
 
-// @LINE:30
+// @LINE:33
 def at(path:String, file:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Assets.at(path, file), HandlerDef(this, "controllers.Assets", "at", Seq(classOf[String], classOf[String]), "GET", """ Map static resources from the /public folder to the /assets URL path""", _prefix + """assets/$file<.+>""")
 )
@@ -493,18 +559,18 @@ def at(path:String, file:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.
 }
                           
 
-// @LINE:36
-// @LINE:35
+// @LINE:39
+// @LINE:38
 class ReverseSignUp {
     
 
-// @LINE:36
+// @LINE:39
 def signup(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.SignUp.signup(), HandlerDef(this, "controllers.SignUp", "signup", Seq(), "POST", """""", _prefix + """signup""")
 )
                       
 
-// @LINE:35
+// @LINE:38
 def blank(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.SignUp.blank(), HandlerDef(this, "controllers.SignUp", "blank", Seq(), "GET", """""", _prefix + """signup""")
 )
@@ -513,6 +579,9 @@ def blank(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
 }
                           
 
+// @LINE:16
+// @LINE:15
+// @LINE:14
 // @LINE:13
 // @LINE:12
 // @LINE:11
@@ -520,9 +589,9 @@ def blank(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
 class ReverseUserMgr {
     
 
-// @LINE:11
-def pmtlist(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
-   controllers.UserMgr.pmtlist(), HandlerDef(this, "controllers.UserMgr", "pmtlist", Seq(), "GET", """""", _prefix + """userpmts""")
+// @LINE:14
+def delete(id:Long): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.UserMgr.delete(id), HandlerDef(this, "controllers.UserMgr", "delete", Seq(classOf[Long]), "POST", """""", _prefix + """userpmts/$id<[^/]+>/delete""")
 )
                       
 
@@ -532,33 +601,51 @@ def pmtmain(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
 )
                       
 
-// @LINE:13
-def save(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
-   controllers.UserMgr.save(), HandlerDef(this, "controllers.UserMgr", "save", Seq(), "POST", """""", _prefix + """userpmts""")
-)
-                      
-
 // @LINE:12
 def create(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.UserMgr.create(), HandlerDef(this, "controllers.UserMgr", "create", Seq(), "GET", """""", _prefix + """userpmts/new""")
+)
+                      
+
+// @LINE:16
+def edit(id:Long): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.UserMgr.edit(id), HandlerDef(this, "controllers.UserMgr", "edit", Seq(classOf[Long]), "GET", """""", _prefix + """userpmts/$id<[^/]+>""")
+)
+                      
+
+// @LINE:15
+def update(id:Long): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.UserMgr.update(id), HandlerDef(this, "controllers.UserMgr", "update", Seq(classOf[Long]), "POST", """""", _prefix + """userpmts/$id<[^/]+>""")
+)
+                      
+
+// @LINE:11
+def pmtlist(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.UserMgr.pmtlist(), HandlerDef(this, "controllers.UserMgr", "pmtlist", Seq(), "GET", """""", _prefix + """userpmts""")
+)
+                      
+
+// @LINE:13
+def save(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
+   controllers.UserMgr.save(), HandlerDef(this, "controllers.UserMgr", "save", Seq(), "POST", """""", _prefix + """userpmts""")
 )
                       
     
 }
                           
 
+// @LINE:30
 // @LINE:27
-// @LINE:24
+// @LINE:26
 // @LINE:23
-// @LINE:20
+// @LINE:22
 // @LINE:19
-// @LINE:16
 // @LINE:8
 // @LINE:6
 class ReverseApplication {
     
 
-// @LINE:27
+// @LINE:30
 def delete(id:Long): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.delete(id), HandlerDef(this, "controllers.Application", "delete", Seq(classOf[Long]), "POST", """ Delete a computer""", _prefix + """computers/$id<[^/]+>/delete""")
 )
@@ -570,31 +657,31 @@ def main(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
 )
                       
 
-// @LINE:19
+// @LINE:22
 def create(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.create(), HandlerDef(this, "controllers.Application", "create", Seq(), "GET", """ Add computer""", _prefix + """computers/new""")
 )
                       
 
-// @LINE:23
+// @LINE:26
 def edit(id:Long): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.edit(id), HandlerDef(this, "controllers.Application", "edit", Seq(classOf[Long]), "GET", """ Edit existing computer""", _prefix + """computers/$id<[^/]+>""")
 )
                       
 
-// @LINE:24
+// @LINE:27
 def update(id:Long): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.update(id), HandlerDef(this, "controllers.Application", "update", Seq(classOf[Long]), "POST", """""", _prefix + """computers/$id<[^/]+>""")
 )
                       
 
-// @LINE:16
+// @LINE:19
 def list(p:Int, s:String, o:String, f:String): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.list(p, s, o, f), HandlerDef(this, "controllers.Application", "list", Seq(classOf[Int], classOf[String], classOf[String], classOf[String]), "GET", """ Computers pmtlist (look at the default values for pagination parameters)""", _prefix + """computers""")
 )
                       
 
-// @LINE:20
+// @LINE:23
 def save(): play.api.mvc.HandlerRef[_] = new play.api.mvc.HandlerRef(
    controllers.Application.save(), HandlerDef(this, "controllers.Application", "save", Seq(), "POST", """""", _prefix + """computers""")
 )

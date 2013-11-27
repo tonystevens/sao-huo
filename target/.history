@@ -2,3 +2,6 @@ idea
 ~run
 exit
 ~run
+help play
+classpath
+~run

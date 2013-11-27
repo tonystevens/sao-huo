@@ -1,4 +1,4 @@
-@(paymentForm: Form[Payment])
+@(id: Long, paymentForm: Form[Payment])
 
 @import helper._
 
@@ -6,12 +6,12 @@
 
 @main {
     
-    <h1>Add a computer</h1>
+    <h1>Edit payment</h1>
     
-    @form(routes.UserMgr.save()) {
+    @form(routes.UserMgr.update(id)) {
         
         <fieldset>
-
+        
             @inputText(paymentForm("cc_name"), '_label -> "Owner Name")
             @inputText(paymentForm("cc_number"), '_label -> "Credit Card Number")
             @inputText(paymentForm("cc_address_1"), '_label -> "Address 1")
@@ -20,13 +20,18 @@
             @inputText(paymentForm("cc_state"), '_label -> "State")
             @inputText(paymentForm("cc_zip_code"), '_label -> "Zip Code")
 
+
         </fieldset>
         
         <div class="actions">
-            <input type="submit" value="Create this payment" class="btn primary"> or
+            <input type="submit" value="Save this payment" class="btn primary"> or
             <a href="@routes.UserMgr.pmtlist()" class="btn">Cancel</a>
         </div>
         
+    }
+    
+    @form(routes.UserMgr.delete(id), 'class -> "topRight") {
+        <input type="submit" value="Delete this payment" class="btn danger">
     }
     
 }

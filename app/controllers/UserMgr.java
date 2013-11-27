@@ -6,6 +6,7 @@ import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.usermgr.createPmtForm;
+import views.html.usermgr.editPmtForm;
 import views.html.editForm;
 import views.html.usermgr.pmtlist;
 
@@ -64,7 +65,32 @@ public class UserMgr extends Controller {
         Form<Payment> paymentForm = form(Payment.class);
         return ok(createPmtForm.render(paymentForm));
     }
-    
+
+    public static Result delete(Long id) {
+        Payment.find.ref(id).delete();
+        flash("success", "Payment method has been deleted");
+        return pmtlist();
+    }
+
+    public static Result update(Long id) {
+        Form<Payment> paymentForm = form(Payment.class).bindFromRequest();
+        if(paymentForm.hasErrors()) {
+            return badRequest(editPmtForm.render(id, paymentForm));
+        }
+        paymentForm.get().update(id);
+        flash("success", "Payment method " + paymentForm.get().cc_name + " has been updated");
+        return pmtlist();
+    }
+
+
+    public static Result edit(Long id) {
+        Form<Payment> paymentForm = form(Payment.class).fill(
+                Payment.find.byId(id)
+        );
+        return ok(
+                editPmtForm.render(id, paymentForm)
+        );
+    }
 
 }
             
