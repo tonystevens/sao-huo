@@ -24,14 +24,14 @@
         </fieldset>
         
         <div class="actions">
-            <input type="submit" value="Save this payment" class="btn primary"> or
+            <input type="submit" value="Save this order" class="btn primary"> or
             <a href="@routes.OrderMgr.orderlist()" class="btn">Cancel</a>
         </div>
         
     }
     
     @form(routes.OrderMgr.delete(id), 'class -> "topRight") {
-        <input type="submit" value="Delete this payment" class="btn danger">
+        <input type="submit" value="Delete this order" class="btn danger">
     }
     
 }

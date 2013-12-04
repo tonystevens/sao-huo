@@ -50,12 +50,14 @@ public class OrderMgr extends Controller {
 
     public static Result save() {
         Form<Orders> orderForm = form(Orders.class).bindFromRequest();
-        Orders newOrder = orderForm.get();
-        newOrder.users = Users.findByEmail(session("user")).get(0);
+        System.out.println(orderForm.toString());
         if(orderForm.hasErrors()) {
+            System.out.println("orderForm hasErrors");
             return badRequest(createOrderForm.render(orderForm));
         }
-        newOrder.postDate = new GregorianCalendar().getTime();
+        Orders newOrder = orderForm.get();
+        newOrder.users = Users.findByEmail(session("user")).get(0);
+        newOrder.post_dt = new GregorianCalendar().getTime();
         newOrder.save();
         flash("success", "Order " + orderForm.get().id + " has been created");
         return orderlist(0,"item_name", "asc", "");
@@ -84,8 +86,8 @@ public class OrderMgr extends Controller {
 
 
     public static Result edit(Long id) {
-        Form<Orders> paymentForm = form(Orders.class).fill(Orders.find.byId(id));
-        return ok(editOrderForm.render(id, paymentForm));
+        Form<Orders> orderForm = form(Orders.class).fill(Orders.find.byId(id));
+        return ok(editOrderForm.render(id, orderForm));
     }
     
 

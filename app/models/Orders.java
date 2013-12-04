@@ -23,31 +23,31 @@ public class Orders extends Model {
     public Long id;
     
     @Constraints.Required
-    public String itemName;
+    public String item_name;
     
     @Formats.DateTime(pattern="yyyy-MM-dd")
-    public Date buyDate;
+    public Date buy_dt;
     
     @Formats.DateTime(pattern="yyyy-MM-dd")
-    public Date deliverDate;
+    public Date deliver_dt;
 
     @Constraints.Required
-    public String unitPrice;
+    public String unit_price;
 
     @Constraints.Required
     public int quantity;
 
     @Constraints.Required
-    public String itemSource;
+    public String item_source;
 
     @Constraints.Required
     public String note;
 
 
-    public String trackingNumber;
+    public String tracking_number;
 
     @Formats.DateTime(pattern="yyyy-MM-dd hh:mm:ss")
-    public Date postDate;
+    public Date post_dt;
 
     @ManyToOne
     public Users users;
@@ -64,7 +64,7 @@ public class Orders extends Model {
 
     public static Page<Orders> page(int page, int pageSize, String sortBy, String order, String filter){
         return find.where()
-                .ilike("itemName", "%" + filter + "%")
+                .ilike("item_name", "%" + filter + "%")
                 .orderBy(sortBy + " " + order)
                 .fetch("users")
                 .findPagingList(pageSize)

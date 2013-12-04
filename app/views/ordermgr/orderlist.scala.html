@@ -77,22 +77,22 @@
 
                 @for(order <- currentPage.getList) {
                     <tr>
-                        <td><a href="@routes.OrderMgr.edit(order.id)">@order.itemName</a></td>
-                        <td>@order.buyDate</td>
-                        <td>@if(order.deliverDate == null) {
+                        <td><a href="@routes.OrderMgr.edit(order.id)">@order.item_name</a></td>
+                        <td>@order.buy_dt.format("dd MMM yyyy")</td>
+                        <td>@if(order.deliver_dt == null) {
                             <em>-</em>
                         } else {
-                            @order.deliverDate
+                            @order.deliver_dt.format("dd MMM yyyy")
                         }</td>
                         <td>
-                            order.unitPrice
+                            @order.unit_price
                         </td>
                         <td>@order.quantity</td>
-                        <td>@order.itemSource</td>
-                        <td>@if(order.trackingNumber == null) {
+                        <td>@order.item_source</td>
+                        <td>@if(order.tracking_number == null) {
                             <em>-</em>
                         } else {
-                            @order.trackingNumber
+                            @order.tracking_number
                         }</td>
                         <td>@order.note</td>
                     </tr>

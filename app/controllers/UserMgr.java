@@ -48,11 +48,11 @@ public class UserMgr extends Controller {
 
     public static Result save() {
         Form<Payment> paymentForm = form(Payment.class).bindFromRequest();
-        Payment newPmt = paymentForm.get();
-        newPmt.users = Users.findByEmail(session("user")).get(0);
         if(paymentForm.hasErrors()) {
             return badRequest(createPmtForm.render(paymentForm));
         }
+        Payment newPmt = paymentForm.get();
+        newPmt.users = Users.findByEmail(session("user")).get(0);
         newPmt.save();
         flash("success", "Payment method " + paymentForm.get().cc_name + " has been created");
         return pmtlist(0,"cc_name", "asc", "");
