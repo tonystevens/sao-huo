@@ -45,6 +45,22 @@ create table payment (
   constraint pk_payment primary key (id))
 ;
 
+create table orders (
+  id                        bigint not null,
+  item_name                 varchar(255),
+  buy_dt                    timestamp,
+  deliver_dt                timestamp,
+  unit_price                varchar(9),
+  quantity                  bigint not null,
+  item_source               varchar(50),
+  tracking_number           varchar(20),
+  note                      varchar(50),
+  users_email               varchar(255),
+  post_dt                   timestamp,
+  constraint pk_orders primary key (id))
+;
+
+
 create sequence company_seq start with 1000;
 
 create sequence computer_seq start with 1000;
@@ -53,11 +69,15 @@ create sequence users_seq start with 1000;
 
 create sequence payment_seq start with 1000;
 
+create sequence orders_seq start with 1000;
+
 alter table computer add constraint fk_computer_company_1 foreign key (company_id) references company (id) on delete restrict on update restrict;
 create index ix_computer_company_1 on computer (company_id);
 
 alter table payment add constraint fk_payment_users_1 foreign key (users_email) references users (email) on delete restrict on update restrict;
+alter table orders add constraint fk_order_users_1 foreign key (users_email) references users (email) on delete restrict on update restrict;
 create index ix_payment_users_1 on payment (users_email);
+create index ix_orders_users_1 on orders (users_email);
 
 # --- !Downs
 

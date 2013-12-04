@@ -1,4 +1,4 @@
-@(user: Users, payments: java.util.List[Payment])
+@(message: String, user: Users)
 
     @header(key:String, title:String) = {
         <th>
@@ -9,49 +9,12 @@
 @main {
 
     <h1 id="homeTitle">@user.first_name @user.last_name </h1>
-    <h1 id="homeTitle">@user.cell_phone (sign in summary)</h1>
 
-    @if(payments.size() == 0) {
+    <div class="actions">
+        <a href="@routes.UserMgr.pmtmain()" class="btn">Payments</a>
+        <a href="@routes.OrderMgr.ordermain()" class="btn">Orders</a>
+    </div>
 
-        <div class="well">
-            <em>No payment yet</em>
-        </div>
 
-    } else {
-
-        <table class="computers zebra-striped">
-            <thead>
-                <tr>
-                    @header("cc_number", "Credit Card Number")
-                    @header("cc_address_1", "Address 1")
-                    @header("cc_address_2", "Address 2")
-                    @header("cc_city", "City")
-                    @header("cc_state", "State")
-                    @header("cc_zip_code", "Zip Code")
-                </tr>
-            </thead>
-            <tbody>
-
-            @for(pmt <- payments) {
-                <tr>
-                    <td>@pmt.cc_number</td>
-                    <td>@pmt.cc_address_1</td>
-                    <td>
-                    @if(pmt.cc_address_2 == null) {
-                        <em>-</em>
-                    } else {
-                        @pmt.cc_address_2
-                    }
-                    </td>
-                    <td>@pmt.cc_city</td>
-                    <td>@pmt.cc_state</td>
-                    <td>@pmt.cc_zip_code</td>
-                </tr>
-            }
-
-            </tbody>
-        </table>
-
-    }
 
 }

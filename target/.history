@@ -5,3 +5,5 @@ exit
 help play
 classpath
 ~run
+compile
+~run

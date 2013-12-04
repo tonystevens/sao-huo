@@ -1,0 +1,108 @@
+@(user: Users, currentPage: com.avaje.ebean.Page[Orders], currentSortBy: String, currentOrder: String, currentFilter: String)
+
+
+@link(newPage:Int, newSortBy:String) = @{
+
+    var sortBy = currentSortBy
+    var order = currentOrder
+
+    if(newSortBy != null) {
+        sortBy = newSortBy
+        if(currentSortBy == newSortBy) {
+            if(currentOrder == "asc") {
+                order = "desc"
+            } else {
+                order = "asc"
+            }
+        } else {
+            order = "asc"
+        }
+    }
+
+    // Generate the link
+    routes.OrderMgr.orderlist(newPage, sortBy, order, currentFilter)
+
+}
+
+@header(key:String, title:String) = {
+    <th class="@key.replace(".","_") header @if(currentSortBy == key) @{if(currentOrder == "asc") "headerSortDown" else "headerSortUp"}">
+        <a href="@link(0, key)">@title</a>
+    </th>
+}
+
+@main {
+
+    <h1 id="homeTitle">@user.first_name @user.last_name </h1>
+    <h1 id="homeTitle">@user.cell_phone </h1>
+
+    @if(flash.containsKey("success")) {
+        <div class="alert-message warning">
+            <strong>Done!</strong> @flash.get("success")
+        </div>
+    }
+
+    <div id="actions">
+
+        <form action="@link(0, "cc_name")" method="GET">
+            <input type="search" id="searchbox" name="f" value="@currentFilter" placeholder="Filter by item name...">
+            <input type="submit" id="searchsubmit" value="Filter by item name" class="btn primary">
+        </form>
+
+        <a class="btn success" id="add" href="@routes.OrderMgr.create()">Add a new order</a>
+
+    </div>
+
+    @if(currentPage.getTotalRowCount == 0) {
+
+        <div class="well">
+            <em>No Order yet</em>
+        </div>
+
+    } else {
+        <table class="computers zebra-striped">
+            <thead>
+                <tr>
+                    @header("item_name", "Item Name")
+                    @header("buy_dt", "Purchase Date")
+                    @header("deliver_dt", "Deliver Date")
+                    @header("unit_price", "Unit Price")
+                    @header("quantity", "Quantity")
+                    @header("item_source", "Item Source")
+                    @header("tracking_number", "Tracking #")
+                    @header("note", "Note")
+
+                </tr>
+            </thead>
+            <tbody>
+
+                @for(order <- currentPage.getList) {
+                    <tr>
+                        <td><a href="@routes.OrderMgr.edit(order.id)">@order.itemName</a></td>
+                        <td>@order.buyDate</td>
+                        <td>@if(order.deliverDate == null) {
+                            <em>-</em>
+                        } else {
+                            @order.deliverDate
+                        }</td>
+                        <td>
+                            order.unitPrice
+                        </td>
+                        <td>@order.quantity</td>
+                        <td>@order.itemSource</td>
+                        <td>@if(order.trackingNumber == null) {
+                            <em>-</em>
+                        } else {
+                            @order.trackingNumber
+                        }</td>
+                        <td>@order.note</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+    }
+        
+}
+
+            

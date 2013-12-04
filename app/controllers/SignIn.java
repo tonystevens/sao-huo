@@ -54,7 +54,8 @@ public class SignIn extends Controller {
             System.out.println("User: "+created.email);
             session("user",email);
             session("pwd",password);
-            return UserMgr.pmtlist(0, "cc_name","asc","");
+//            return UserMgr.pmtlist(0, "cc_name","asc","");
+            return ok(summary.render("Welcome, " + created.first_name + " " + created.last_name +" !",created));
         }
     }
 

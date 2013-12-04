@@ -7,7 +7,6 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.usermgr.createPmtForm;
 import views.html.usermgr.editPmtForm;
-import views.html.editForm;
 import views.html.usermgr.pmtlist;
 
 import java.util.List;
@@ -23,7 +22,7 @@ public class UserMgr extends Controller {
     public final static String DEFAULT_PWD = "abcd";
 
     public static Result pmtmain(){
-        return pmtlist(0, "name", "asc", "");
+        return pmtlist(0, "cc_name", "asc", "");
     }
 
     public static Result pmtlist(int page, String sortBy, String order, String filter) {

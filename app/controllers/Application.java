@@ -21,7 +21,7 @@ public class Application extends Controller {
     );
     
     /**
-     * Handle default path requests, redirect to computers pmtlist
+     * Handle default path requests, redirect to computers orderlist
      */
     public static Result index() {
         return ok(views.html.index.render("Welcome to Sao Huo Program! "));
@@ -32,7 +32,7 @@ public class Application extends Controller {
     }
 
     /**
-     * Display the paginated pmtlist of computers.
+     * Display the paginated orderlist of computers.
      *
      * @param page Current page number (starts from 0)
      * @param sortBy Column to be sorted

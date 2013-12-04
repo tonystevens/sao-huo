@@ -1,0 +1,33 @@
+@(orderForm: Form[Orders])
+
+@import helper._
+
+@implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapInput.render) } 
+
+@main {
+    
+    <h1>Add an order record</h1>
+    
+    @form(routes.OrderMgr.save()) {
+        
+        <fieldset>
+
+            @inputText(orderForm("item_name"), '_label -> "Item Name")
+            @inputText(orderForm("buy_dt"), '_label -> "Purchase Date")
+            @inputText(orderForm("deliver_dt"), '_label -> "Deliver Date")
+            @inputText(orderForm("unit_price"), '_label -> "Unit Price")
+            @inputText(orderForm("quantity"), '_label -> "Quantity")
+            @inputText(orderForm("item_source"), '_label -> "Item Source")
+            @inputText(orderForm("tracking_number"), '_label -> "Tracking #")
+            @inputText(orderForm("note"), '_label -> "Note")
+
+        </fieldset>
+        
+        <div class="actions">
+            <input type="submit" value="Create this payment" class="btn primary"> or
+            <a href="@routes.OrderMgr.orderlist()" class="btn">Cancel</a>
+        </div>
+        
+    }
+    
+}

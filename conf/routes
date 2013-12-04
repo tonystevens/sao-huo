@@ -2,11 +2,12 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# Default path will just redirect to the computer pmtlist
+# Default path will just redirect to the computer orderlist
 GET         /                            controllers.Application.index()
 
 GET         /main                        controllers.Application.main()
 
+# Users
 GET         /usermain                    controllers.UserMgr.pmtmain()
 GET         /userpmts                    controllers.UserMgr.pmtlist(p:Int ?= 0, s ?= "cc_name", o ?= "asc", f ?= "")
 GET         /userpmts/new                controllers.UserMgr.create()
@@ -15,7 +16,16 @@ POST        /userpmts/:id/delete         controllers.UserMgr.delete(id:Long)
 POST        /userpmts/:id                controllers.UserMgr.update(id:Long)
 GET         /userpmts/:id                controllers.UserMgr.edit(id:Long)
 
-# Computers pmtlist (look at the default values for pagination parameters)
+GET         /userorders                  controllers.OrderMgr.ordermain()
+GET         /userorders/main             controllers.OrderMgr.orderlist(p:Int ?= 0, s ?= "item_name", o ?= "asc", f ?= "")
+GET         /userorders/new              controllers.OrderMgr.create()
+POST        /userorders                  controllers.OrderMgr.save()
+POST        /userorders/:id/delete       controllers.OrderMgr.delete(id:Long)
+POST        /userorders/:id              controllers.OrderMgr.update(id:Long)
+GET         /userorders/:id              controllers.OrderMgr.edit(id:Long)
+
+
+# Computers orderlist (look at the default values for pagination parameters)
 GET         /computers                   controllers.Application.list(p:Int ?= 0, s ?= "name", o ?= "asc", f ?= "")
 
 # Add computer
