@@ -8,11 +8,24 @@
 
 @main {
 
-    <h1 id="homeTitle">@user.first_name @user.last_name </h1>
+    <h1 id="homeTitle">主面板</h1>
 
     <div class="actions">
-        <a href="@routes.UserMgr.pmtmain()" class="btn">Payments</a>
-        <a href="@routes.OrderMgr.ordermain()" class="btn">Orders</a>
+        @user.first_name @user.last_name
+        现有@user.userPaymentList.size()种付款方式 <a href="@routes.UserMgr.pmtmain()" >更新付款方式</a>
+        <br>
+        现有@user.userOrdersList.size()个存货信息未发货 <a href="@routes.OrderMgr.ordermain()" >更新存货信息</a>
+
+        其护士
+        @for(sub_user <- user.sub_user_list){
+            @sub_user.first_name @sub_user.last_name<br>
+            有@sub_user.userPaymentList.size()种付款方式<br>
+            有以下@sub_user.userOrdersList.size()个存货信息未发货<br>
+            @for(order <- sub_user.userOrdersList){
+                - @order.item_name @order.quantity 个, 单价$@order.unit_price<br>
+            }
+            <br>
+        }
     </div>
 
 

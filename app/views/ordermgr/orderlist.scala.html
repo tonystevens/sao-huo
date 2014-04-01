@@ -47,8 +47,9 @@
             <input type="search" id="searchbox" name="f" value="@currentFilter" placeholder="Filter by item name...">
             <input type="submit" id="searchsubmit" value="Filter by item name" class="btn primary">
         </form>
-
+    @if(user.role.equals("USER")) {
         <a class="btn success" id="add" href="@routes.OrderMgr.create()">Add a new order</a>
+    }
 
     </div>
 
@@ -77,7 +78,9 @@
 
                 @for(order <- currentPage.getList) {
                     <tr>
-                        <td><a href="@routes.OrderMgr.edit(order.id)">@order.item_name</a></td>
+                        <td>
+                           <a href="@routes.OrderMgr.edit(order.id)">@order.item_name</a>
+                        </td>
                         <td>@order.buy_dt.format("dd MMM yyyy")</td>
                         <td>@if(order.deliver_dt == null) {
                             <em>-</em>

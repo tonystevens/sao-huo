@@ -3,47 +3,32 @@
 # ~~~~
 
 # Default path will just redirect to the computer orderlist
-GET         /                            controllers.Application.index()
+GET         /                             controllers.Application.index()
 
-GET         /main                        controllers.Application.main()
 
 # Users
-GET         /usermain                    controllers.UserMgr.pmtmain()
-GET         /userpmts                    controllers.UserMgr.pmtlist(p:Int ?= 0, s ?= "cc_name", o ?= "asc", f ?= "")
-GET         /userpmts/new                controllers.UserMgr.create()
-POST        /userpmts                    controllers.UserMgr.save()
-POST        /userpmts/:id/delete         controllers.UserMgr.delete(id:Long)
-POST        /userpmts/:id                controllers.UserMgr.update(id:Long)
-GET         /userpmts/:id                controllers.UserMgr.edit(id:Long)
+GET         /usermain                     controllers.UserMgr.pmtmain()
+GET         /userpmts                     controllers.UserMgr.pmtlist(p:Int ?= 0, s ?= "cc_name", o ?= "asc", f ?= "")
+GET         /userpmts/new                 controllers.UserMgr.create()
+POST        /userpmts                     controllers.UserMgr.save()
+POST        /userpmts/:id/delete          controllers.UserMgr.delete(id:Long)
+POST        /userpmts/:id                 controllers.UserMgr.update(id:Long)
+GET         /userpmts/:id                 controllers.UserMgr.edit(id:Long)
 
-GET         /userorders                  controllers.OrderMgr.ordermain()
-GET         /userorders/main             controllers.OrderMgr.orderlist(p:Int ?= 0, s ?= "item_name", o ?= "asc", f ?= "")
-GET         /userorders/new              controllers.OrderMgr.create()
-POST        /userorders                  controllers.OrderMgr.save()
-POST        /userorders/:id/delete       controllers.OrderMgr.delete(id:Long)
-POST        /userorders/:id              controllers.OrderMgr.update(id:Long)
-GET         /userorders/:id              controllers.OrderMgr.edit(id:Long)
+GET         /userorders                   controllers.OrderMgr.ordermain()
+GET         /userorders/main              controllers.OrderMgr.orderlist(p:Int ?= 0, s ?= "item_name", o ?= "asc", f ?= "")
+GET         /userorders/new               controllers.OrderMgr.create()
+POST        /userorders                   controllers.OrderMgr.save()
+POST        /userorders/:id/delete        controllers.OrderMgr.delete(id:Long)
+POST        /userorders/:id               controllers.OrderMgr.update(id:Long)
+GET         /userorders/:id               controllers.OrderMgr.edit(id:Long)
 
-
-# Computers orderlist (look at the default values for pagination parameters)
-GET         /computers                   controllers.Application.list(p:Int ?= 0, s ?= "name", o ?= "asc", f ?= "")
-
-# Add computer
-GET         /computers/new               controllers.Application.create()
-POST        /computers                   controllers.Application.save()
-
-# Edit existing computer
-GET         /computers/:id               controllers.Application.edit(id:Long)
-POST        /computers/:id               controllers.Application.update(id:Long)
-
-# Delete a computer
-POST        /computers/:id/delete        controllers.Application.delete(id:Long)
 
 # Map static resources from the /public folder to the /assets URL path
-GET         /assets/*file                controllers.Assets.at(path="/public", file)
+GET         /assets/*file                 controllers.Assets.at(path="/public", file)
 
 #User
-GET         /signin                      controllers.SignIn.blank()
-POST        /signin                      controllers.SignIn.signin()
-GET         /signup                      controllers.SignUp.blank()
-POST        /signup                      controllers.SignUp.signup()
+GET         /signin                       controllers.SignIn.blank()
+POST        /signin                       controllers.SignIn.signin()
+GET         /signup                       controllers.SignUp.blank()
+POST        /signup                       controllers.SignUp.signup()

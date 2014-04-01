@@ -53,8 +53,9 @@ public class Payment extends Model {
         return find.where().eq("users",user).findList();
     }
 
-    public static Page<Payment> page(int page, int pageSize, String sortBy, String order, String filter){
+    public static Page<Payment> page(int page, int pageSize, String sortBy, String order, String filter, String email){
         return find.where()
+                .eq("")
                 .ilike("cc_name", "%" + filter + "%")
                 .orderBy(sortBy + " " + order)
                 .fetch("users")

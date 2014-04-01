@@ -28,23 +28,17 @@ public class OrderMgr extends Controller {
     }
 
     public static Result orderlist(int page, String sortBy, String order, String filter) {
-
         String email = session("user");
         String password = session("pwd");
-
-        System.out.println("1. email: "+email);
-        System.out.println("2. password: "+password);
 
         if(email.equals(DEFAULT_EML) && email.equals(DEFAULT_PWD))
             return redirect(routes.SignIn.signin());
 
         List<Users> userList = Users.findByEmailAndPassword(email, password);
-        System.out.println("userList size: "+userList.size());
         if(userList.size() == 0)
             return redirect(routes.SignIn.signin());
 
-        Users user = userList.get(0);
-        return ok(orderlist.render(user, Orders.page(page, 10, sortBy, order, filter), sortBy, order, filter));
+        return ok(orderlist.render(userList.get(0), Orders.page(page, 10, sortBy, order, filter), sortBy, order, filter));
 
     }
 
@@ -56,6 +50,7 @@ public class OrderMgr extends Controller {
             return badRequest(createOrderForm.render(orderForm));
         }
         Orders newOrder = orderForm.get();
+
         newOrder.users = Users.findByEmail(session("user")).get(0);
         newOrder.post_dt = new GregorianCalendar().getTime();
         newOrder.save();

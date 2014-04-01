@@ -40,6 +40,13 @@ public class Users extends Model {
 
     public String home_phone;
 
+    public String role;
+
+    public List<Users> sub_user_list;
+
+    public List<Orders> userOrdersList;
+    public List<Payment> userPaymentList;
+
     /**
      * Generic query helper for entity
      */
@@ -47,6 +54,10 @@ public class Users extends Model {
 
     public static List<Users> findByEmail(String email) {
         return find.where().eq("email", email).findList();
+    }
+
+    public static List<Users> findByRole(String role_prefix) {
+        return find.where().startsWith("role",role_prefix).findList();
     }
 
     public static List<Users> findByEmailAndPassword(String email, String password) {

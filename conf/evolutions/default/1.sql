@@ -1,20 +1,34 @@
-# --- First database schema
+# --- Created by Ebean DDL
+# To stop Ebean DDL generation, remove this comment and start using Evolutions
 
 # --- !Ups
 
-create table company (
+create table orders (
   id                        bigint not null,
-  name                      varchar(255),
-  constraint pk_company primary key (id))
+  item_name                 varchar(255),
+  buy_dt                    timestamp,
+  deliver_dt                timestamp,
+  unit_price                varchar(255),
+  quantity                  integer,
+  item_source               varchar(255),
+  note                      varchar(255),
+  tracking_number           varchar(255),
+  post_dt                   timestamp,
+  users_email               varchar(255),
+  constraint pk_orders primary key (id))
 ;
 
-create table computer (
+create table payment (
   id                        bigint not null,
-  name                      varchar(255),
-  introduced                timestamp,
-  discontinued              timestamp,
-  company_id                bigint,
-  constraint pk_computer primary key (id))
+  cc_name                   varchar(255),
+  cc_number                 varchar(255),
+  cc_address_1              varchar(255),
+  cc_address_2              varchar(255),
+  cc_city                   varchar(255),
+  cc_state                  varchar(255),
+  cc_zip_code               varchar(255),
+  users_email               varchar(255),
+  constraint pk_payment primary key (id))
 ;
 
 create table users (
@@ -24,80 +38,43 @@ create table users (
   last_name                 varchar(255),
   address_1                 varchar(255),
   address_2                 varchar(255),
-  city                      varchar(80),
-  state                     varchar(80),
-  zip_code                  varchar(20),
-  cell_phone                varchar(20),
-  home_phone                varchar(20),
+  city                      varchar(255),
+  state                     varchar(255),
+  zip_code                  varchar(255),
+  cell_phone                varchar(255),
+  home_phone                varchar(255),
+  role                      varchar(255),
   constraint pk_users primary key (email))
 ;
 
-create table payment (
-  id                        bigint not null,
-  cc_name                   varchar(255),
-  cc_number                 varchar(255),
-  cc_address_1              varchar(255),
-  cc_address_2              varchar(255),
-  cc_city                   varchar(80),
-  cc_state                  varchar(80),
-  cc_zip_code               varchar(20),
-  users_email               varchar(255),
-  constraint pk_payment primary key (id))
-;
+create sequence orders_seq;
 
-create table orders (
-  id                        bigint not null,
-  item_name                 varchar(255),
-  buy_dt                    timestamp,
-  deliver_dt                timestamp,
-  unit_price                varchar(9),
-  quantity                  bigint not null,
-  item_source               varchar(50),
-  tracking_number           varchar(20),
-  note                      varchar(50),
-  users_email               varchar(255),
-  post_dt                   timestamp,
-  constraint pk_orders primary key (id))
-;
+create sequence payment_seq;
 
+create sequence users_seq;
 
-create sequence company_seq start with 1000;
-
-create sequence computer_seq start with 1000;
-
-create sequence users_seq start with 1000;
-
-create sequence payment_seq start with 1000;
-
-create sequence orders_seq start with 1000;
-
-alter table computer add constraint fk_computer_company_1 foreign key (company_id) references company (id) on delete restrict on update restrict;
-create index ix_computer_company_1 on computer (company_id);
-
-alter table payment add constraint fk_payment_users_1 foreign key (users_email) references users (email) on delete restrict on update restrict;
-alter table orders add constraint fk_order_users_1 foreign key (users_email) references users (email) on delete restrict on update restrict;
-create index ix_payment_users_1 on payment (users_email);
+alter table orders add constraint fk_orders_users_1 foreign key (users_email) references users (email) on delete restrict on update restrict;
 create index ix_orders_users_1 on orders (users_email);
+alter table payment add constraint fk_payment_users_2 foreign key (users_email) references users (email) on delete restrict on update restrict;
+create index ix_payment_users_2 on payment (users_email);
+
+
 
 # --- !Downs
 
 SET REFERENTIAL_INTEGRITY FALSE;
 
-drop table if exists company;
-
-drop table if exists computer;
-
-drop table if exists users;
+drop table if exists orders;
 
 drop table if exists payment;
 
+drop table if exists users;
+
 SET REFERENTIAL_INTEGRITY TRUE;
 
-drop sequence if exists company_seq;
-
-drop sequence if exists computer_seq;
-
-drop sequence if exists users_seq;
+drop sequence if exists orders_seq;
 
 drop sequence if exists payment_seq;
+
+drop sequence if exists users_seq;
 

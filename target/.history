@@ -7,3 +7,5 @@ classpath
 ~run
 compile
 ~run
+exit
+~run
