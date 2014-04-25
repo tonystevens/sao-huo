@@ -15,8 +15,9 @@
         现有@user.userPaymentList.size()种付款方式 <a href="@routes.UserMgr.pmtmain()" >更新付款方式</a>
         <br>
         现有@user.userOrdersList.size()个存货信息未发货 <a href="@routes.OrderMgr.ordermain()" >更新存货信息</a>
-
+        <br>
         其护士
+        <br>
         @for(sub_user <- user.sub_user_list){
             @sub_user.first_name @sub_user.last_name<br>
             有@sub_user.userPaymentList.size()种付款方式<br>
@@ -24,7 +25,6 @@
             @for(order <- sub_user.userOrdersList){
                 - @order.item_name @order.quantity 个, 单价$@order.unit_price<br>
             }
-            <br>
         }
     </div>
 

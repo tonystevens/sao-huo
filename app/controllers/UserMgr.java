@@ -42,7 +42,7 @@ public class UserMgr extends Controller {
             return redirect(routes.SignIn.signin());
 
         Users user = userList.get(0);
-        return ok(pmtlist.render(user, Payment.page(page, 10, sortBy, order, filter), sortBy, order, filter));
+        return ok(pmtlist.render(user, Payment.page(page, 10, sortBy, order, filter, email), sortBy, order, filter));
 
     }
 
